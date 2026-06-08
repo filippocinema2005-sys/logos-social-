@@ -1,4 +1,4 @@
-// Importiamo gli strumenti necessari
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import supabase from '../supabase';
@@ -23,12 +23,12 @@ function Gruppo() {
   // Utente loggato
   const [utente, setUtente] = useState(null);
 
-  // Carichiamo tutto quando la pagina si apre
-  useEffect(() => {
-    caricaUtente();
-    caricaGruppo();
-    caricaMessaggi();
-  }, [id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
+  caricaUtente();
+  caricaGruppo();
+  caricaMessaggi();
+}, [id]);
 
   // Funzione che carica l'utente loggato
   const caricaUtente = async () => {

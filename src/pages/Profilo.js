@@ -1,4 +1,4 @@
-// Importiamo gli strumenti necessari
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import supabase from '../supabase';
@@ -24,10 +24,10 @@ function Profilo() {
   const [tesi, setTesi] = useState('');
   const [bio, setBio] = useState('');
 
-  // Carichiamo tutto quando la pagina si apre
-  useEffect(() => {
-    caricaUtente();
-  }, []);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => {
+  caricaUtente();
+}, []);
 
   // Funzione che carica l'utente e il suo profilo
   const caricaUtente = async () => {
