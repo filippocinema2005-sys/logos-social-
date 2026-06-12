@@ -73,12 +73,24 @@ function Agora() {
 
   const pubblicaPost = async () => {
     if (!nuovoPost.trim()) return;
+    
+    // Prendiamo il nome dal profilo se esiste
+    const { data: profiloUtente } = await supabase
+      .from('profili')
+      .select('nome')
+      .eq('user_id', utente.id)
+      .single();
+  
+    const nomeDisplay = profiloUtente?.nome 
+      ? profiloUtente.nome.toUpperCase() 
+      : utente.email.split('@')[0].toUpperCase();
+  
     const { error } = await supabase
       .from('post')
       .insert({
         contenuto: nuovoPost,
         user_id: utente.id,
-        nome_utente: utente.email.split('@')[0].toUpperCase(),
+        nome_utente: nomeDisplay,
         likes: 0,
         tag: tagPost.trim() || null
       });
@@ -118,12 +130,23 @@ function Agora() {
 
   const pubblicaCommento = async (postId) => {
     if (!nuovoCommento.trim()) return;
+    
+    const { data: profiloUtente } = await supabase
+      .from('profili')
+      .select('nome')
+      .eq('user_id', utente.id)
+      .single();
+  
+    const nomeDisplay = profiloUtente?.nome 
+      ? profiloUtente.nome.toUpperCase() 
+      : utente.email.split('@')[0].toUpperCase();
+  
     const { error } = await supabase
       .from('commenti')
       .insert({
         contenuto: nuovoCommento,
         user_id: utente.id,
-        nome_utente: utente.email.split('@')[0].toUpperCase(),
+        nome_utente: nomeDisplay,
         post_id: postId
       });
     if (!error) {
