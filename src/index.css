@@ -1,12 +1,15 @@
-/* Resettiamo tutti i margini e padding di default del browser */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Sfondo scuro su tutta la pagina */
 body {
-  background: #0f0f0f;
-  color: white;
+  background: #141414;
+  color: #e8e8e8;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+input, textarea, button {
+  font-family: 'Space Grotesk', sans-serif;
 }

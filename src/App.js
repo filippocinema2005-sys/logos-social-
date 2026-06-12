@@ -8,6 +8,9 @@ import Gruppi from './pages/Gruppi';
 import Gruppo from './pages/Gruppo';
 import Symposium from './pages/Symposium';
 import Profilo from './pages/Profilo';
+import Notifiche from './pages/Notifiche';
+import Cerca from './pages/Cerca';
+import ProfiloUtente from './pages/ProfiloUtente';
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
         <Route path="/gruppi/:id" element={<Gruppo />} />
         <Route path="/symposium" element={<Symposium />} />
         <Route path="/profilo" element={<Profilo />} />
+        <Route path="/profilo/:id" element={<ProfiloUtente />} />
+        <Route path="/notifiche" element={<Notifiche />} />
+        <Route path="/cerca" element={<Cerca />} />
       </Routes>
     </BrowserRouter>
   );
