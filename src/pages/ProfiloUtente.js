@@ -63,7 +63,9 @@ function ProfiloUtente() {
 
   const toggleFollow = async () => {
     if (!utente) return;
+    
     if (seguendo) {
+      // Smettiamo di seguire — eliminiamo il record
       await supabase
         .from('follows')
         .delete()
@@ -71,12 +73,34 @@ function ProfiloUtente() {
         .eq('following_id', id);
       setSeguendo(false);
       setFollowers(prev => prev - 1);
+      
     } else {
+      // Iniziamo a seguire — inseriamo il record
       await supabase
         .from('follows')
         .insert({ follower_id: utente.id, following_id: id });
       setSeguendo(true);
       setFollowers(prev => prev + 1);
+      
+      // Prendiamo il nome di chi sta seguendo
+      const { data: profiloMio } = await supabase
+        .from('profili')
+        .select('nome')
+        .eq('user_id', utente.id)
+        .single();
+      
+      const mioNome = profiloMio?.nome || 'Qualcuno';
+      
+      // Mandiamo la notifica all'utente seguito
+      await supabase
+        .from('notifiche')
+        .insert({
+          user_id: id,                    // destinatario — l'utente che viene seguito
+          tipo: 'follow',                 // tipo notifica
+          messaggio: `${mioNome} ha iniziato a seguirti`,
+          letta: false,
+          link: `/profilo/${utente.id}`   // porta al profilo di chi segue
+        });
     }
   };
 

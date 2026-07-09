@@ -1,65 +1,93 @@
-// Importiamo useNavigate — ci permette di navigare tra le schermate
 import { useNavigate } from 'react-router-dom';
 
-// Benvenuto è la schermata iniziale che l'utente vede quando apre l'app
 function Benvenuto() {
-  
-  // useNavigate ci dà una funzione per cambiare schermata
+
   const navigate = useNavigate();
 
-  return (
-    // Contenitore principale — sfondo scuro, tutto centrato
-    <div style={{
+  const s = {
+    page: {
       minHeight: '100vh',
-      background: '#0f0f0f',
+      background: '#141414',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: 'Georgia, serif',
-      color: 'white'
-    }}>
-      
-      {/* Titolo in greco — Λόγος */}
-      <h1 style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>Λόγος</h1>
-      
-      {/* Sottotitolo */}
-      <p style={{ fontSize: '1.1rem', color: '#888', marginBottom: '3rem' }}>
-        Il social network per filosofi
-      </p>
-      
-      {/* Bottone Accedi — porta alla schermata di login */}
-      <button
-        onClick={() => navigate('/accedi')}
-        style={{
-          background: 'white',
-          color: 'black',
-          border: 'none',
-          padding: '12px 32px',
-          fontSize: '1rem',
-          fontFamily: 'Georgia, serif',
-          cursor: 'pointer',
-          marginBottom: '1rem',
-          width: '200px'
-        }}>
+      fontFamily: "'Space Grotesk', sans-serif",
+      color: '#e8e8e8',
+      padding: '24px'
+    },
+    logo: {
+      fontFamily: "'Space Mono', monospace",
+      fontSize: '36px',
+      fontWeight: 700,
+      letterSpacing: '0.2em',
+      color: '#fff',
+      marginBottom: '8px'
+    },
+    sub: {
+      fontSize: '11px',
+      color: '#555',
+      fontFamily: "'Space Mono', monospace",
+      letterSpacing: '0.15em',
+      marginBottom: '64px',
+      textTransform: 'uppercase'
+    },
+    btnPrimary: {
+      width: '100%',
+      maxWidth: '320px',
+      background: '#F5D90A',
+      color: '#141414',
+      border: 'none',
+      padding: '14px',
+      fontSize: '13px',
+      fontWeight: 700,
+      fontFamily: "'Space Mono', monospace",
+      cursor: 'pointer',
+      borderRadius: '2px',
+      letterSpacing: '0.08em',
+      marginBottom: '12px'
+    },
+    btnSecondary: {
+      width: '100%',
+      maxWidth: '320px',
+      background: 'transparent',
+      color: '#e8e8e8',
+      border: '1px solid #2a2a2a',
+      padding: '14px',
+      fontSize: '13px',
+      fontFamily: "'Space Mono', monospace",
+      cursor: 'pointer',
+      borderRadius: '2px',
+      letterSpacing: '0.08em',
+      marginBottom: '40px'
+    },
+    footer: {
+      fontSize: '10px',
+      color: '#333',
+      fontFamily: "'Space Mono', monospace",
+      letterSpacing: '0.08em',
+      textAlign: 'center'
+    }
+  };
+
+  return (
+    <div style={s.page}>
+
+      <div style={s.logo}>
+        Λ<span style={{ color: '#F5D90A' }}>Ο</span>ΓΟΣ
+      </div>
+      <p style={s.sub}>The Philosophical High</p>
+
+      <button style={s.btnPrimary} onClick={() => navigate('/accedi')}>
         Accedi
       </button>
-      
-      {/* Bottone Registrati — porta alla schermata di registrazione */}
-      <button
-        onClick={() => navigate('/registrati')}
-        style={{
-          background: 'transparent',
-          color: 'white',
-          border: '1px solid #444',
-          padding: '12px 32px',
-          fontSize: '1rem',
-          fontFamily: 'Georgia, serif',
-          cursor: 'pointer',
-          width: '200px'
-        }}>
+      <button style={s.btnSecondary} onClick={() => navigate('/registrati')}>
         Registrati
       </button>
+
+      <p style={s.footer}>
+        _ il social network per filosofi
+      </p>
 
     </div>
   );
